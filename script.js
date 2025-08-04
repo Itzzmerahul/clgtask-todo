@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskList = document.getElementById('task-list');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
-    // Load tasks from Local Storage
+   
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     let currentFilter = 'all';
 
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredTasks = tasks.filter(task => {
             if (currentFilter === 'active') return !task.completed;
             if (currentFilter === 'completed') return task.completed;
-            return true; // 'all'
+            return true; 
         });
 
         filteredTasks.forEach(task => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     taskList.addEventListener('click', e => {
         const id = parseInt(e.target.closest('.task-item').dataset.id);
         
-        // Toggle complete
+  
         if (e.target.type === 'checkbox') {
             const task = tasks.find(t => t.id === id);
             task.completed = e.target.checked;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTasks();
         }
 
-        // Delete task
+    
         if (e.target.classList.contains('delete-btn')) {
             tasks = tasks.filter(t => t.id !== id);
             saveTasks();
@@ -76,6 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initial render
+   
     renderTasks();
 });
